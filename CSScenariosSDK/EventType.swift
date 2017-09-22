@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// Event type enum
+///
+/// - api: API event type
+/// - loadUri: LoadURI event type
+/// - form: Form event type
+/// - custom: Custom event type
 enum EventType: String {
     case api = "API"
     case loadUri = "LoadURI"

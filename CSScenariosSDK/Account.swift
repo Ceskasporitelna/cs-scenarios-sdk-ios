@@ -8,9 +8,15 @@
 
 import UIKit
 
+/// Account info
 struct Account: JSONSerializable {
+    
+    /// Name
     var name: String
     
+    /// JSON representation of the structure
+    ///
+    /// - Returns: A dictionary with the Values data that can be serialized
     func JSONRepresentation() -> [String : Any] {
         return ["name": self.name]
     }

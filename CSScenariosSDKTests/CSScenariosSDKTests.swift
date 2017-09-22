@@ -62,13 +62,13 @@ class CSScenariosSDKTests: XCTestCase {
         let expectation = self.expectation(description: "Response expectation")
         
         let date = dateTimeFormatter.date(from: "2014-02-27T15:45:05+01:00")
-        let eventData = EventData(eventTypeId: 1,
-                                  eventType: EventType.loadUri,
-                                  applicationId: 1,
-                                  application: "Penize na klik",
-                                  eventCreation: date,
-                                  clientId: "2015",
-                                  values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
+        let eventData = Event(eventTypeId: 1,
+                              eventType: EventType.loadUri,
+                              applicationId: 1,
+                              application: "Penize na klik",
+                              eventCreation: date,
+                              clientId: "2015",
+                              values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
         
         self.client.events.single.post(data: eventData, completion: { (result) in
             switch result {
@@ -87,13 +87,13 @@ class CSScenariosSDKTests: XCTestCase {
         let expectation = self.expectation(description: "Response expectation")
         
         let date = dateTimeFormatter.date(from: "2014-02-27T15:45:05+01:00")
-        let eventData = EventData(eventTypeId: 1,
-                                  eventType: EventType.loadUri,
-                                  applicationId: 1,
-                                  application: "Penize na klik",
-                                  eventCreation: date,
-                                  clientId: "2015",
-                                  values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
+        let eventData = Event(eventTypeId: 1,
+                             eventType: EventType.loadUri,
+                             applicationId: 1,
+                             application: "Penize na klik",
+                             eventCreation: date,
+                             clientId: "2015",
+                             values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
         
         self.client.events.collection.post(data: [eventData], completion: { (result) in
             switch result {

@@ -10,6 +10,7 @@ import UIKit
 
 fileprivate let czLanguage = "cs-CZ"
 
+/// Configuration of the Api client
 class WebApiConfiguration: NSObject {
 
     public let environment: Environment

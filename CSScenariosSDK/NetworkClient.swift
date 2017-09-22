@@ -14,6 +14,12 @@ public let headerWebApiKey = "web-api-key"
 public let headerAcceptLanguage = "accept-language"
 public let headerAuthorization = "authorization"
 
+/// HTTP method enum
+///
+/// - get: GET HTTP method
+/// - post: POST HTTP method
+/// - put: PUT HTTP method
+/// - delete: DELETE HTTP method
 enum HTTPMethod: String {
     case get    = "GET"
     case post   = "POST"
@@ -21,11 +27,21 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+/// Result enum to return from Api calls
+///
+/// - error: Error result with underlying error
+/// - success: Success result with response and data
 enum ApiResult {
     case error(error: ApiError)
     case success(response: URLResponse?, data: Any?)
 }
 
+/// API errors
+///
+/// - malformedURL: Malformed URL error. The URL string cannot be converted to URL object.
+/// - serializationError: Error when serializing object to JSON
+/// - serverError: General network error
+/// - httpStatusError: Thrown when HTTP status other then 200 is returned 
 enum ApiError: Error {
     case malformedURL(String)
     case serializationError(String)
@@ -33,6 +49,7 @@ enum ApiError: Error {
     case httpStatusError(String)
 }
 
+/// Simple network service client
 class NetworkClient: NSObject {
     
     var headers: [String:String] = [:]
@@ -49,10 +66,22 @@ class NetworkClient: NSObject {
         ]
     }
 
+    /// Add HTTP header to the client to be used with each following request
+    ///
+    /// - Parameters:
+    ///   - key: HTTP header name
+    ///   - value: HTTP header value
     public func addHeader(key:String, value:String) {
         headers[key] = value
     }
     
+    /// Call network service
+    ///
+    /// - Parameters:
+    ///   - url: Service URL
+    ///   - method: HTTP method
+    ///   - body: Optional HTTP body
+    ///   - completion: Completion method
     public func callApi(url: String, method: HTTPMethod, body: Data?, completion:@escaping(ApiResult)->()) {
         let serviceUrl = "\(self.baseUrl)\(url)"
         
@@ -93,6 +122,13 @@ class NetworkClient: NSObject {
         }.resume()
     }
     
+    /// Call network service.
+    ///
+    /// - Parameters:
+    ///   - url: Service URL
+    ///   - method: HTTP method
+    ///   - object: Object that will be serialized as JSON and sent in the request body
+    ///   - completion: Completion
     public func callApi(url: String, method: HTTPMethod, object: JSONSerializable?, completion:@escaping(ApiResult)->()) {
         if let value = object {
             if let data = value.toJSONData() {
@@ -107,6 +143,13 @@ class NetworkClient: NSObject {
         }
     }
     
+    /// Call network service.
+    ///
+    /// - Parameters:
+    ///   - url: Service URL
+    ///   - method: HTTP method
+    ///   - objects: Array of objects that will be serialized as JSON and sent in the request body
+    ///   - completion: Completion
     public func callApi(url: String, method: HTTPMethod, objects: [JSONSerializable]?, completion:@escaping(ApiResult)->()) {
         if let values = objects  {
             let json = values.map({ $0.JSONRepresentation() })

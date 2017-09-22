@@ -8,9 +8,15 @@
 
 import UIKit
 
+/// Resource for posting events collections
 class CollectionEventsResource: Resource {
     
-    public func post(data: [EventData], completion: @escaping (ApiResult)->()) {
+    /// Post an event collection
+    ///
+    /// - Parameters:
+    ///   - data: Events array
+    ///   - completion: Completion method
+    public func post(data: [Event], completion: @escaping (ApiResult)->()) {
         self.client.callApi(url: self.basePath, method: .post, objects: data, completion: completion)
     }
 }

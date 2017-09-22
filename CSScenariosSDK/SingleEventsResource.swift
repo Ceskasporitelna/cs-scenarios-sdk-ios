@@ -8,9 +8,15 @@
 
 import UIKit
 
+/// Resource for posting single events
 class SingleEventsResource: Resource {
     
-    public func post(data: EventData, completion: @escaping (ApiResult)->()) {
+    /// Post an event
+    ///
+    /// - Parameters:
+    ///   - data: Event data
+    ///   - completion: Completion method
+    public func post(data: Event, completion: @escaping (ApiResult)->()) {
         self.client.callApi(url: self.basePath, method: .post, object: data, completion: completion)
     }
 }
