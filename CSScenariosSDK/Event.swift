@@ -30,7 +30,7 @@ struct Event: JSONSerializable {
     var clientId : String?
     
     /// Additional event information, JSON object or value without fixed structure.
-    var values : Values?
+    var values : [String:Any]?
     
     /// JSON representation of the structure
     ///
@@ -46,7 +46,7 @@ struct Event: JSONSerializable {
         json["application"] = self.application
         json["eventCreation"] = self.eventCreation == nil ? nil : dateFormatter.string(from: self.eventCreation!)
         json["clientId"] = self.clientId
-        json["values"] = self.values?.JSONRepresentation()
+        json["values"] = self.values
         
         return json
     }

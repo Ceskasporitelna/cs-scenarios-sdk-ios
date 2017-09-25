@@ -10,7 +10,6 @@ import UIKit
 
 public let headerAccept = "accept"
 public let headerContentType = "content-type"
-public let headerWebApiKey = "web-api-key"
 public let headerAcceptLanguage = "accept-language"
 public let headerAuthorization = "authorization"
 

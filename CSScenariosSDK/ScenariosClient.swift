@@ -9,6 +9,7 @@
 import UIKit
 
 fileprivate let clientPath = "/api/v1/scenarios"
+fileprivate let headerWebApiKey = "web-api-key"
 
 /// Scenarios SDK rest client for accessing event resource
 class ScenariosClient: NetworkClient {

@@ -20,11 +20,13 @@ class CSScenariosSDKTests: XCTestCase {
     
     override func setUp() {
         let config = WebApiConfiguration(webApiKey: "TEST_API_KEY",
-                                         environment: Environment.other(value: testBaseURL),
-                                         language: "cs-CZ",
-                                         authorizationToken: "Bearer token")
+                                         authorizationToken: "Bearer token",
+                                         environment: Environment.other(value: testBaseURL)
+                                         )
         
-        self.client = Scenarios(webApiConfiguration: config).client
+        // Initialize
+        Scenarios.initialize(webApiConfiguration: config)
+        self.client = Scenarios.sharedInstance.client
         
         self.dateTimeFormatter.dateFormat = Scenarios.DateTimeFormat
     }
@@ -68,9 +70,9 @@ class CSScenariosSDKTests: XCTestCase {
                               application: "Penize na klik",
                               eventCreation: date,
                               clientId: "2015",
-                              values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
+                              values: ["uri": "www.csas.cz/getAccounts", "accounts": [["name": "csas"]]])
         
-        self.client.events.single.post(data: eventData, completion: { (result) in
+        self.client.events.post(data: eventData, completion: { (result) in
             switch result {
             case .success:
                 expectation.fulfill()
@@ -93,9 +95,9 @@ class CSScenariosSDKTests: XCTestCase {
                              application: "Penize na klik",
                              eventCreation: date,
                              clientId: "2015",
-                             values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
+                             values: ["uri": "www.csas.cz/getAccounts", "accounts": [["name": "csas"]]])
         
-        self.client.events.collection.post(data: [eventData], completion: { (result) in
+        self.client.events.post(data: [eventData], completion: { (result) in
             switch result {
             case .success:
                 expectation.fulfill()
