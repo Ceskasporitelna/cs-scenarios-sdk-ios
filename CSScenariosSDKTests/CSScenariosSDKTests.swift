@@ -20,11 +20,13 @@ class CSScenariosSDKTests: XCTestCase {
     
     override func setUp() {
         let config = WebApiConfiguration(webApiKey: "TEST_API_KEY",
-                                         environment: Environment.other(value: testBaseURL),
-                                         language: "cs-CZ",
-                                         authorizationToken: "Bearer token")
+                                         authorizationToken: "Bearer token",
+                                         environment: Environment.other(value: testBaseURL)
+                                         )
         
-        self.client = Scenarios(webApiConfiguration: config).client
+        // Initialize
+        Scenarios.initialize(webApiConfiguration: config)
+        self.client = Scenarios.sharedInstance.client
         
         self.dateTimeFormatter.dateFormat = Scenarios.DateTimeFormat
     }
@@ -62,15 +64,15 @@ class CSScenariosSDKTests: XCTestCase {
         let expectation = self.expectation(description: "Response expectation")
         
         let date = dateTimeFormatter.date(from: "2014-02-27T15:45:05+01:00")
-        let eventData = EventData(eventTypeId: 1,
-                                  eventType: EventType.loadUri,
-                                  applicationId: 1,
-                                  application: "Penize na klik",
-                                  eventCreation: date,
-                                  clientId: "2015",
-                                  values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
+        let eventData = Event(eventTypeId: 1,
+                              eventType: EventType.loadUri,
+                              applicationId: 1,
+                              application: "Penize na klik",
+                              eventCreation: date,
+                              clientId: "2015",
+                              values: ["uri": "www.csas.cz/getAccounts", "accounts": [["name": "csas"]]])
         
-        self.client.events.single.post(data: eventData, completion: { (result) in
+        self.client.events.postSingle(data: eventData, completion: { (result) in
             switch result {
             case .success:
                 expectation.fulfill()
@@ -87,15 +89,15 @@ class CSScenariosSDKTests: XCTestCase {
         let expectation = self.expectation(description: "Response expectation")
         
         let date = dateTimeFormatter.date(from: "2014-02-27T15:45:05+01:00")
-        let eventData = EventData(eventTypeId: 1,
-                                  eventType: EventType.loadUri,
-                                  applicationId: 1,
-                                  application: "Penize na klik",
-                                  eventCreation: date,
-                                  clientId: "2015",
-                                  values: Values(uri: "www.csas.cz/getAccounts", accounts: [Account(name: "csas")]))
+        let eventData = Event(eventTypeId: 1,
+                             eventType: EventType.loadUri,
+                             applicationId: 1,
+                             application: "Penize na klik",
+                             eventCreation: date,
+                             clientId: "2015",
+                             values: ["uri": "www.csas.cz/getAccounts", "accounts": [["name": "csas"]]])
         
-        self.client.events.collection.post(data: [eventData], completion: { (result) in
+        self.client.events.postCollection(data: [eventData], completion: { (result) in
             switch result {
             case .success:
                 expectation.fulfill()

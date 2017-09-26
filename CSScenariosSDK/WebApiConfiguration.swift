@@ -10,6 +10,7 @@ import UIKit
 
 fileprivate let czLanguage = "cs-CZ"
 
+/// Configuration of the Api client
 class WebApiConfiguration: NSObject {
 
     public let environment: Environment
@@ -17,7 +18,7 @@ class WebApiConfiguration: NSObject {
     public var authorizationToken: String
     public var language: String
     
-    init(webApiKey: String, environment: Environment, language: String, authorizationToken: String) {
+    init(webApiKey: String, authorizationToken: String, environment: Environment = Environment.systemTest, language: String = czLanguage) {
         self.webApiKey = webApiKey
         self.environment = environment
         self.language = language

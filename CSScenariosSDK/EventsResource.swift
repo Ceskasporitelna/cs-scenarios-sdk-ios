@@ -8,13 +8,25 @@
 
 import UIKit
 
+/// Events resource to manage posting of single event/collection of events
 class EventsResource: Resource {
     
-    public var single: SingleEventsResource {
-        return SingleEventsResource(basePath: "\(self.basePath)/single", client: self.client)
+    /// Post an event
+    ///
+    /// - Parameters:
+    ///   - data: Event data
+    ///   - completion: Completion method
+    public func postSingle(data: Event, completion: @escaping (ApiResult)->()) {
+        self.client.callApi(url: "\(self.basePath)/single", method: .post, object: data, completion: completion)
     }
     
-    public var collection: CollectionEventsResource {
-        return CollectionEventsResource(basePath: "\(self.basePath)/collection", client: self.client)
+    /// Post an event collection
+    ///
+    /// - Parameters:
+    ///   - data: Events array
+    ///   - completion: Completion method
+    public func postCollection(data: [Event], completion: @escaping (ApiResult)->()) {
+        self.client.callApi(url: "\(self.basePath)/collection", method: .post, objects: data, completion: completion)
     }
+    
 }

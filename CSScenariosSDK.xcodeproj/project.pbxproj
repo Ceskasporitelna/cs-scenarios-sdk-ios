@@ -15,13 +15,9 @@
 		01D83E4E1F725CEA004D1E68 /* WebApiConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83E4D1F725CEA004D1E68 /* WebApiConfiguration.swift */; };
 		01D83E501F725F0A004D1E68 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83E4F1F725F0A004D1E68 /* EventType.swift */; };
 		01D83E521F726A31004D1E68 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83E511F726A31004D1E68 /* Resource.swift */; };
-		01D83E581F73DA82004D1E68 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83E571F73DA82004D1E68 /* Account.swift */; };
 		01FC8DB41F68057F00F0CD37 /* ScenariosClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DB31F68057F00F0CD37 /* ScenariosClient.swift */; };
 		01FC8DB61F68070600F0CD37 /* EventsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DB51F68070600F0CD37 /* EventsResource.swift */; };
-		01FC8DB81F68090800F0CD37 /* SingleEventsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DB71F68090800F0CD37 /* SingleEventsResource.swift */; };
-		01FC8DBA1F68091D00F0CD37 /* CollectionEventsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DB91F68091D00F0CD37 /* CollectionEventsResource.swift */; };
-		01FC8DBE1F680A9E00F0CD37 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DBD1F680A9E00F0CD37 /* EventData.swift */; };
-		01FC8DC01F680B9500F0CD37 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DBF1F680B9500F0CD37 /* Values.swift */; };
+		01FC8DBE1F680A9E00F0CD37 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DBD1F680A9E00F0CD37 /* Event.swift */; };
 		01FC8DC21F681B0500F0CD37 /* Scenarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DC11F681B0500F0CD37 /* Scenarios.swift */; };
 		01FC8DC41F681D9900F0CD37 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FC8DC31F681D9900F0CD37 /* JSONSerializable.swift */; };
 /* End PBXBuildFile section */
@@ -48,13 +44,9 @@
 		01D83E4D1F725CEA004D1E68 /* WebApiConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebApiConfiguration.swift; sourceTree = "<group>"; };
 		01D83E4F1F725F0A004D1E68 /* EventType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		01D83E511F726A31004D1E68 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		01D83E571F73DA82004D1E68 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		01FC8DB31F68057F00F0CD37 /* ScenariosClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenariosClient.swift; sourceTree = "<group>"; };
 		01FC8DB51F68070600F0CD37 /* EventsResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsResource.swift; sourceTree = "<group>"; };
-		01FC8DB71F68090800F0CD37 /* SingleEventsResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventsResource.swift; sourceTree = "<group>"; };
-		01FC8DB91F68091D00F0CD37 /* CollectionEventsResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionEventsResource.swift; sourceTree = "<group>"; };
-		01FC8DBD1F680A9E00F0CD37 /* EventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
-		01FC8DBF1F680B9500F0CD37 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		01FC8DBD1F680A9E00F0CD37 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		01FC8DC11F681B0500F0CD37 /* Scenarios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenarios.swift; sourceTree = "<group>"; };
 		01FC8DC31F681D9900F0CD37 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		014D73CC1F74FAD300F1157B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01FC8DB51F68070600F0CD37 /* EventsResource.swift */,
+				01D83E511F726A31004D1E68 /* Resource.swift */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		01905F491F66E83B008A24FE = {
 			isa = PBXGroup;
 			children = (
@@ -99,16 +100,13 @@
 		01905F551F66E83B008A24FE /* CSScenariosSDK */ = {
 			isa = PBXGroup;
 			children = (
+				014D73CC1F74FAD300F1157B /* Resources */,
 				01D83E4A1F72596D004D1E68 /* Model */,
 				01905F561F66E83B008A24FE /* CSScenariosSDK.h */,
-				01905F571F66E83B008A24FE /* Info.plist */,
 				01FC8DC11F681B0500F0CD37 /* Scenarios.swift */,
 				01FC8DB31F68057F00F0CD37 /* ScenariosClient.swift */,
 				01D83E481F716285004D1E68 /* NetworkClient.swift */,
-				01FC8DB71F68090800F0CD37 /* SingleEventsResource.swift */,
-				01FC8DB91F68091D00F0CD37 /* CollectionEventsResource.swift */,
-				01FC8DB51F68070600F0CD37 /* EventsResource.swift */,
-				01D83E511F726A31004D1E68 /* Resource.swift */,
+				01905F571F66E83B008A24FE /* Info.plist */,
 			);
 			path = CSScenariosSDK;
 			sourceTree = "<group>";
@@ -125,12 +123,10 @@
 		01D83E4A1F72596D004D1E68 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				01FC8DBD1F680A9E00F0CD37 /* EventData.swift */,
+				01FC8DBD1F680A9E00F0CD37 /* Event.swift */,
+				01D83E4F1F725F0A004D1E68 /* EventType.swift */,
 				01D83E4B1F725981004D1E68 /* Environment.swift */,
 				01D83E4D1F725CEA004D1E68 /* WebApiConfiguration.swift */,
-				01FC8DBF1F680B9500F0CD37 /* Values.swift */,
-				01D83E4F1F725F0A004D1E68 /* EventType.swift */,
-				01D83E571F73DA82004D1E68 /* Account.swift */,
 				01FC8DC31F681D9900F0CD37 /* JSONSerializable.swift */,
 			);
 			name = Model;
@@ -248,19 +244,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				01D83E521F726A31004D1E68 /* Resource.swift in Sources */,
-				01FC8DC01F680B9500F0CD37 /* Values.swift in Sources */,
 				01D83E491F716285004D1E68 /* NetworkClient.swift in Sources */,
 				01FC8DC21F681B0500F0CD37 /* Scenarios.swift in Sources */,
 				01FC8DB41F68057F00F0CD37 /* ScenariosClient.swift in Sources */,
 				01FC8DB61F68070600F0CD37 /* EventsResource.swift in Sources */,
-				01FC8DBE1F680A9E00F0CD37 /* EventData.swift in Sources */,
-				01FC8DBA1F68091D00F0CD37 /* CollectionEventsResource.swift in Sources */,
+				01FC8DBE1F680A9E00F0CD37 /* Event.swift in Sources */,
 				01D83E4C1F725981004D1E68 /* Environment.swift in Sources */,
 				01D83E501F725F0A004D1E68 /* EventType.swift in Sources */,
 				01D83E4E1F725CEA004D1E68 /* WebApiConfiguration.swift in Sources */,
 				01FC8DC41F681D9900F0CD37 /* JSONSerializable.swift in Sources */,
-				01FC8DB81F68090800F0CD37 /* SingleEventsResource.swift in Sources */,
-				01D83E581F73DA82004D1E68 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

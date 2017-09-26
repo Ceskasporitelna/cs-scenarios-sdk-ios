@@ -10,20 +10,46 @@ import UIKit
 
 class Scenarios: NSObject {
     
-    public static let DateTimeFormat   = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-
-    fileprivate static var _sharedInstance : Scenarios!
+    fileprivate static var _sharedInstance : Scenarios?
     
-    public internal (set) var client: ScenariosClient
+    fileprivate var _client: ScenariosClient?
     
+    fileprivate var configuration: WebApiConfiguration?
+    
+    /// Datetime format for dates in ISO 8601 formatting 
+    public static let DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    
+    /// Scenarios API client
+    public var client: ScenariosClient! {
+        get {
+            if self._client == nil {
+                self._client = ScenariosClient( config: self.configuration! )
+            }
+            return self._client
+        }
+    }
+    
+    /// Scenarios SDK shared instance
     public class var sharedInstance: Scenarios {
-        return _sharedInstance
+        if _sharedInstance == nil {
+            print ("Scenarios not initialized. Please initialize Scenarios with webApiConfiguration first.")
+        }
+        return _sharedInstance!
     }
     
-    init( webApiConfiguration : WebApiConfiguration ) {
-        self.client = ScenariosClient( config: webApiConfiguration )
-        super.init()
-        Scenarios._sharedInstance = self
+    /// Initialize Scenarios SDK using required information distributed through configuration object
+    ///
+    /// - Parameter webApiConfiguration: Configuration object for client initialization
+    public class func initialize( webApiConfiguration : WebApiConfiguration ) {
+        Scenarios._sharedInstance = Scenarios(webApiConfiguration: webApiConfiguration)
     }
+    
+    /// Private initializer for the shared instance
+    private init(webApiConfiguration: WebApiConfiguration) {
+        self.configuration = webApiConfiguration
+    }
+    
+    /// Disallow default initializer
+    private override init() {}
 
 }

@@ -9,14 +9,16 @@
 import UIKit
 import Foundation
 
+/// JSONSerializable is an object that can be converted to a dictionary representation directly serializable to JSON
 protocol JSONSerializable {
     func JSONRepresentation() -> [String: Any]
 }
 
 extension JSONSerializable {
-    
+    /// Serializes the object to JSON Data
+    ///
+    /// - Returns: Data with the JSON values to be embeded in HTTP request body
     func toJSONData() -> Data? {
-    
         let representation = JSONRepresentation()
         
         guard JSONSerialization.isValidJSONObject(representation) else {

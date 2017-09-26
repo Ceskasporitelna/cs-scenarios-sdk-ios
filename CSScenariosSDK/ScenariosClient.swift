@@ -9,7 +9,9 @@
 import UIKit
 
 fileprivate let clientPath = "/api/v1/scenarios"
+fileprivate let headerWebApiKey = "web-api-key"
 
+/// Scenarios SDK rest client for accessing event resource
 class ScenariosClient: NetworkClient {
     
     init(config: WebApiConfiguration ) {
@@ -19,6 +21,7 @@ class ScenariosClient: NetworkClient {
         self.addHeader(key: headerAcceptLanguage, value: config.language);
     }
     
+    /// Get scenarios events resource to create event records
     public var events: EventsResource {
         return EventsResource(basePath:"\(clientPath)/events", client:self)
     }
