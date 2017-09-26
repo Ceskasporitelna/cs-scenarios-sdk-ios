@@ -16,7 +16,7 @@ class EventsResource: Resource {
     /// - Parameters:
     ///   - data: Event data
     ///   - completion: Completion method
-    public func post(data: Event, completion: @escaping (ApiResult)->()) {
+    public func postSingle(data: Event, completion: @escaping (ApiResult)->()) {
         self.client.callApi(url: "\(self.basePath)/single", method: .post, object: data, completion: completion)
     }
     
@@ -25,7 +25,7 @@ class EventsResource: Resource {
     /// - Parameters:
     ///   - data: Events array
     ///   - completion: Completion method
-    public func post(data: [Event], completion: @escaping (ApiResult)->()) {
+    public func postCollection(data: [Event], completion: @escaping (ApiResult)->()) {
         self.client.callApi(url: "\(self.basePath)/collection", method: .post, objects: data, completion: completion)
     }
     

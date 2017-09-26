@@ -72,7 +72,7 @@ class CSScenariosSDKTests: XCTestCase {
                               clientId: "2015",
                               values: ["uri": "www.csas.cz/getAccounts", "accounts": [["name": "csas"]]])
         
-        self.client.events.post(data: eventData, completion: { (result) in
+        self.client.events.postSingle(data: eventData, completion: { (result) in
             switch result {
             case .success:
                 expectation.fulfill()
@@ -97,7 +97,7 @@ class CSScenariosSDKTests: XCTestCase {
                              clientId: "2015",
                              values: ["uri": "www.csas.cz/getAccounts", "accounts": [["name": "csas"]]])
         
-        self.client.events.post(data: [eventData], completion: { (result) in
+        self.client.events.postCollection(data: [eventData], completion: { (result) in
             switch result {
             case .success:
                 expectation.fulfill()
