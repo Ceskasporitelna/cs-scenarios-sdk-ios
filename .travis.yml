@@ -8,7 +8,6 @@ osx_image: xcode8.3
 before_install:
     - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
     - bundle install
-    - carthage bootstrap
 
 script:
     - git config --global user.name "CSAS Developers"
