@@ -1,0 +1,10 @@
+Carthage/Build
+CSScenariosSDK/CSScenariosSDK.xcodeproj/xcuserdata
+CSScenariosSDK/CSScenariosSDK.xcodeproj/project.xcworkspace/xcuserdata
+CSScenariosSDK.xcworkspace/xcuserdata
+CSScenariosSDK.xcodeproj/xcuserdata
+CSScenariosSDK.xcodeproj/project.xcworkspace/xcuserdata
+CSScenariosSDK.xcodeproj/xcuserdata
+Carthage
+fastlane/test_output
+Cartfile.resolved
