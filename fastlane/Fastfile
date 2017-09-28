@@ -15,6 +15,7 @@
 sdk_name = "CSScenariosSDK"
 podspec_file = 'CSScenariosSDK.podspec'
 xcodeproj_file = 'CSScenariosSDK.xcodeproj'
+scheme_name = 'CSScenariosSDK'
 repo_name = "Ceskasporitelna/cs-scenarios-sdk-ios"
 
 fastlane_version "2.54.0"
@@ -30,7 +31,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan
+    scan(scheme: scheme_name)
   end
 
   lane :ci do |options|
@@ -60,11 +61,7 @@ platform :ios do
       UI.message("This is a normal CI build. Not doing a release.")
     end
   end
-
-  lane :pod_lint do
-    pod_lib_lint(sources: ["https://github.com/Ceskasporitelna/cocoa-pods-specs"])
-  end
-
+  
 
 
   lane :release do |options|
@@ -104,7 +101,7 @@ platform :ios do
     #######################
     # Run tests
     #######################
-    scan
+    scan(scheme: scheme_name)
 
     #######################
     # Add version number to changelog
@@ -128,12 +125,13 @@ platform :ios do
     #######################
     push_to_git_remote(remote_branch: remote_branch)
     pod_push(repo: 'https://github.com/Ceskasporitelna/cocoa-pods-specs')
-
+    
+    
     ########################
     # Carthae release
     ########################
     release_via_carthage({sdk_name: sdk_name, repo_name: repo_name, tag: "v#{new_version}", changelog: changelog })
-
+    
     ########################
     # Notify People
     ########################
@@ -159,26 +157,19 @@ platform :ios do
     rocket
   end
 
+  lane :pod_lint do
+    pod_lib_lint(sources: ["https://github.com/Ceskasporitelna/cocoa-pods-specs"])
+  end
 
-  # You can define as many lanes as you want
 
   after_all do |lane|
-    # This block is called, only if the executed lane was successful
 
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+
   end
 end
-
-
 
 def commands_from_commit_msg
   commit_msg = `git log -1 --pretty=%B`
@@ -187,9 +178,10 @@ def commands_from_commit_msg
   commands.map {|s| s.downcase}
 end
 
+
 def release_via_carthage(options)
-    carthage command: "build", no_skip_current: true
     archive_name = "#{options[:sdk_name]}.framework.zip"
+    carthage(no_skip_current: true, command: "build")
     carthage(command: "archive", output: archive_name)
     github_release = set_github_release(
                                         repository_name: options[:repo_name],
@@ -200,6 +192,7 @@ def release_via_carthage(options)
                                         upload_assets: [archive_name]
                                         )
 end
+
 
 # More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
 # All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md

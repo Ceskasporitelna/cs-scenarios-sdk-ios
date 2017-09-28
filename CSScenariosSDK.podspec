@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name         = "CSScenariosSDK"
-  s.version      = "1.0.0"
+  s.version      = "0.1.0"
   s.source       = { :tag => "v#{s.version}" , :git => "https://github.com/Ceskasporitelna/cs-scenarios-sdk-ios.git" }
 
 
-  s.summary      = "This SDK allows you to post events into Česká spořitelna a.s. Scenarios API."
+  s.summary      = "This is SDK for events posting into Česká spořitelna a.s. Scenarios API."
   s.description  = "This SDK allows you to post events into Česká spořitelna a.s. Scenarios API."
   s.homepage     = "https://developers.csas.cz"
   s.license      = "TBD"
@@ -46,7 +46,6 @@ Pod::Spec.new do |s|
   #  Link your library with frameworks, or libraries. Libraries do not include
   #  the lib prefix of their name.
   #
-  s.frameworks = "CSCoreSDK"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
