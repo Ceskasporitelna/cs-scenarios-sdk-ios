@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "CSScenariosSDK"
-  s.version      = "0.1.0"
+  s.version      = "1.0.0"
   s.source       = { :tag => "v#{s.version}" , :git => "https://github.com/Ceskasporitelna/cs-scenarios-sdk-ios.git" }
 
 
